@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SumController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\CovidController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,3 +28,7 @@ Route::post('/sum2', [SumController::class, 'calculateSum']);
 
 Route::get('/signup', [SignupController::class, 'index'])->name('signup.index');
 Route::post('/signup', [SignupController::class, 'displayInfor'])->name('signup.store');
+
+
+//Bài tập 3
+Route::get('/covid', [CovidController::class, 'getData']);

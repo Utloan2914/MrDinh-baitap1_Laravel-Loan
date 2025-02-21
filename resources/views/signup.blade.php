@@ -76,41 +76,61 @@
         }
     </style>
 </head>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let form = document.getElementById("signupForm");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = {
+                name: document.getElementById("name").value,
+                age: document.getElementById("age").value,
+                date: document.getElementById("date").value,
+                phone: document.getElementById("phone").value,
+                web: document.getElementById("web").value,
+                address: document.getElementById("address").value
+            };
+            localStorage.setItem("signupData", JSON.stringify(formData));
+
+            form.submit();
+        });
+    });
+</script>
 
 <body>
-    <form action="{{ route('signup.store') }}" method="POST">
+    <form id="signupForm" action="{{ route('signup.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" id="name" class="form-control" name="name">
         </div>
 
         <div class="form-group">
             <label>Age</label>
-            <input type="number" class="form-control" name="age">
+            <input type="number" id="age" class="form-control" name="age">
         </div>
 
         <div class="form-group">
             <label>Date</label>
-            <input type="date" class="form-control" name="date">
+            <input type="date" id="date" class="form-control" name="date">
         </div>
 
         <div class="form-group">
             <label>Phone</label>
-            <input type="text" class="form-control" name="phone">
+            <input type="text" id="phone" class="form-control" name="phone">
         </div>
 
         <div class="form-group">
             <label>Web</label>
-            <input type="url" class="form-control" name="web">
+            <input type="url" id="web" class="form-control" name="web">
         </div>
 
         <div class="form-group">
             <label>Address</label>
-            <input type="text" class="form-control" name="address">
+            <input type="text" id="address" class="form-control" name="address">
         </div>
 
-        {{-- Nhúng file error.blade.php --}}
         <div>
             @include('block.error')
         </div>
